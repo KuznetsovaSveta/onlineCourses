@@ -3599,6 +3599,7 @@ html[data-theme=dark] .lectures {
   }
   .certificate__right {
     margin: 0 0 40px;
+    width: 100%;
   }
 }
 /*end certificate*/
