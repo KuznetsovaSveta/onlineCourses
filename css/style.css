@@ -1239,7 +1239,7 @@ html[data-theme=dark] .header__log:hover {
 }
 
 .subscribe {
-  background-image: url(img/subscribe-background.png);
+  background-image: url("../img/subscribe-background.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -1373,7 +1373,7 @@ html[data-theme=dark] .header__log:hover {
 .subscribe-3__container {
   border-radius: 4px;
   padding: 60px 12px;
-  background-image: url("img/subscribe-3-bg.png");
+  background-image: url("../img/subscribe-3-bg.png");
 }
 .subscribe-3__left {
   max-width: 310px;
@@ -1410,7 +1410,7 @@ html[data-theme=dark] .header__log:hover {
 }
 
 html[data-theme=dark] .subscribe {
-  background-image: url(img/subscribe-background-dark.png);
+  background-image: url("../img/subscribe-background-dark.png");
 }
 html[data-theme=dark] .subscribe-2 {
   background: #292c37;
@@ -2567,7 +2567,7 @@ html[data-theme=dark] .other-courses__more {
 
 .discount__container {
   padding: 48px 60px;
-  background-image: url("img/discount-bg.png");
+  background-image: url("../img/discount-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 4px;
@@ -2935,7 +2935,7 @@ html[data-theme=dark] .discount__container {
 
 /*homepage styles*/
 .first-screen {
-  background-image: url(img/background.png);
+  background-image: url("../img/background.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -3135,6 +3135,7 @@ html[data-theme=dark] .first-screen {
   }
   .advantages__container-left {
     max-width: 100%;
+    height: auto;
   }
   .advantages__list {
     margin-bottom: 24px;
@@ -3581,11 +3582,23 @@ html[data-theme=dark] .lectures {
     align-items: center;
   }
   .certificate__left {
-    width: unset;
+    width: 45%;
   }
   .certificate__right {
     position: static;
-    margin-left: 60px;
+    margin-left: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .certificate {
+    flex-direction: column-reverse;
+  }
+  .certificate__left {
+    width: unset;
+    max-width: none;
+  }
+  .certificate__right {
+    margin: 0 0 40px;
   }
 }
 /*end certificate*/
@@ -4081,7 +4094,7 @@ html[data-theme=dark] .post__label {
 /*end homepage styles*/
 /*start page event*/
 .event {
-  background: url("img/event/background.png");
+  background: url("../img/event/background.png");
   background-size: cover;
   margin-bottom: 60px;
 }
@@ -4432,7 +4445,7 @@ html[data-theme=dark] .speaker__text, html[data-theme=dark] .speaker__position, 
   display: flex;
   justify-content: space-between;
   padding: 60px 105px;
-  background-image: url("img/event-subscribe.png");
+  background-image: url("../img/event-subscribe.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 60px;
