@@ -197,7 +197,9 @@ svg {
 }
 
 .btn-color_orange {
-  background: linear-gradient(55.95deg, #FF3F3A 0%, #F75E05 100%);
+  background: -webkit-linear-gradient(45deg, rgb(255, 63, 58), rgb(247, 94, 5));
+  background: -moz-linear-gradient(45deg, rgb(255, 63, 58), rgb(247, 94, 5));
+  background: linear-gradient(45deg, rgb(255, 63, 58), rgb(247, 94, 5));
   color: #fff;
   transition: 0.2s ease;
 }
@@ -207,22 +209,33 @@ svg {
 }
 
 .btn-border_orange {
-  background: linear-gradient(55.95deg, #FF3F3A 0%, #F75E05 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-  border: 1px solid #F75E05;
-  transition: 0.2s ease background;
+  background: transparent;
+  color: #FF3F3A;
+  border: 1px solid #FF3F3A;
+  transition: 0.2s ease;
   position: relative;
+  z-index: 1;
+}
+.btn-border_orange:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: -webkit-linear-gradient(45deg, rgb(255, 63, 58), rgb(247, 94, 5));
+  background: -moz-linear-gradient(45deg, rgb(255, 63, 58), rgb(247, 94, 5));
+  background: linear-gradient(45deg, rgb(255, 63, 58), rgb(247, 94, 5));
+  opacity: 0;
+  border-radius: 4px;
+  z-index: -1;
+  transition: 0.2s ease;
 }
 
 .btn-border_orange:hover {
-  background: linear-gradient(55.95deg, #FF3F3A 0%, #F75E05 100%);
   color: #fff;
-  -webkit-text-fill-color: #fff;
   box-shadow: 0 0.5rem 1.125rem -0.5rem rgba(255, 63, 58, 0.92);
-  border: 1px solid transparent;
+}
+.btn-border_orange:hover:before {
+  opacity: 1;
 }
 
 h2 {
@@ -991,15 +1004,15 @@ html[data-theme=dark] .burger__text {
     width: 26px;
   }
   60% {
-    transform: translateY(0px) translateX(-3px) rotate(-45deg);
+    transform: translateY(0px) translateX(-4px) rotate(-45deg);
     width: 30px;
   }
   75% {
-    transform: translateY(-3px) translateX(-3px) rotate(-45deg);
+    transform: translateY(-3px) translateX(-4px) rotate(-45deg);
     width: 30px;
   }
   100% {
-    transform: translateY(-1px) translateX(-3px) rotate(-45deg);
+    transform: translateY(-1px) translateX(-4px) rotate(-45deg);
     width: 30px;
   }
 }
@@ -1048,15 +1061,15 @@ html[data-theme=dark] .burger__text {
 }
 @keyframes bottomBar_close {
   0% {
-    transform: translateY(-2px) translateX(-3px) rotate(-45deg);
+    transform: translateY(-2px) translateX(-4px) rotate(-45deg);
     width: 30px;
   }
   35% {
-    transform: translateY(-4px) translateX(-3px) rotate(6deg);
+    transform: translateY(-4px) translateX(-4px) rotate(6deg);
     width: 26px;
   }
   53% {
-    transform: translateY(0px) rotate(-3deg);
+    transform: translateY(0px) rotate(-4deg);
     width: 26px;
   }
   68% {
@@ -1239,14 +1252,33 @@ html[data-theme=dark] .header__log:hover {
 }
 
 .subscribe {
-  background-image: url("../img/subscribe-background.png");
+  background: -webkit-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: -moz-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  margin-top: 90px;
+  position: relative;
+  overflow: hidden;
+}
+.subscribe:before, .subscribe:after {
+  content: "";
+  width: 354px;
+  height: 246px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url("../img/subscribe-illustration.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  margin-top: 90px;
+  background-size: 100%;
+}
+.subscribe:after {
+  left: unset;
+  right: 0;
 }
 .subscribe__container {
   padding: 120px 0 180px;
+  position: relative;
+  z-index: 2;
 }
 .subscribe__subtitle {
   text-align: center;
@@ -1267,20 +1299,20 @@ html[data-theme=dark] .header__log:hover {
   height: 52px;
   margin-bottom: 0;
 }
+@media (max-width: 1280px) {
+  .subscribe:before, .subscribe:after {
+    width: 245px;
+    height: 170px;
+  }
+}
 @media (max-width: 992px) {
   .subscribe {
     margin-top: 60px;
-  }
-  .subscribe__container {
-    padding: 90px 0 120px;
   }
 }
 @media (max-width: 576px) {
   .subscribe {
     margin-top: 40px;
-  }
-  .subscribe__container {
-    padding: 60px 0 80px;
   }
   .subscribe__form-input {
     margin-right: 12px;
@@ -1288,11 +1320,26 @@ html[data-theme=dark] .header__log:hover {
   .subscribe__form-button {
     padding: 0 12px;
   }
+  .subscribe:before {
+    left: -34px;
+    width: 180px;
+    height: 125px;
+  }
+  .subscribe:after {
+    right: -34px;
+    width: 180px;
+    height: 125px;
+  }
 }
 
 .subscribe-2,
 .subscribe-3 {
   background: #F4F5F6;
+}
+.subscribe-2:before, .subscribe-2:after,
+.subscribe-3:before,
+.subscribe-3:after {
+  display: none;
 }
 .subscribe-2__container,
 .subscribe-3__container {
@@ -1373,7 +1420,9 @@ html[data-theme=dark] .header__log:hover {
 .subscribe-3__container {
   border-radius: 4px;
   padding: 60px 12px;
-  background-image: url("../img/subscribe-3-bg.png");
+  background: -webkit-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: -moz-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
 }
 .subscribe-3__left {
   max-width: 310px;
@@ -1963,6 +2012,13 @@ html[data-theme=dark] .process__step_num {
   .single-post {
     padding: 40px 0;
   }
+  .single-post__header {
+    flex-wrap: wrap;
+  }
+  .single-post__share {
+    width: 100%;
+    margin: 24px 0 0;
+  }
 }
 
 .post-author__subtitle {
@@ -2004,11 +2060,20 @@ html[data-theme=dark] .process__step_num {
   }
 }
 
-html[data-theme=dark] .post__title, html[data-theme=dark] .post__research {
+html[data-theme=dark] .post__title, html[data-theme=dark] .post__research, html[data-theme=dark] .post__data {
   color: #f1f1f3;
 }
-html[data-theme=dark] .post__title:hover, html[data-theme=dark] .post__research:hover {
+html[data-theme=dark] .post__title:hover, html[data-theme=dark] .post__research:hover, html[data-theme=dark] .post__data:hover {
   color: #FF3F3A;
+}
+html[data-theme=dark] .single-post__subtitle, html[data-theme=dark] .single-post__data, html[data-theme=dark] .single-post__time, html[data-theme=dark] .single-post__social {
+  color: #f1f1f3;
+}
+html[data-theme=dark] .single-post__social:hover {
+  color: #FF3F3A;
+}
+html[data-theme=dark] .post-author__name, html[data-theme=dark] .post-author__position {
+  color: #f1f1f3;
 }
 
 .blog {
@@ -2415,6 +2480,9 @@ html[data-theme=dark] .event-card {
 html[data-theme=dark] .event-card__month, html[data-theme=dark] .event-card__title {
   color: #f1f1f3;
 }
+html[data-theme=dark] .views__label, html[data-theme=dark] .views__item:not(.views__item-active) {
+  color: #f1f1f3;
+}
 
 .courses {
   padding: 60px 0 90px;
@@ -2490,10 +2558,23 @@ html[data-theme=dark] .course-card__title {
   .other-events {
     padding: 60px 0;
   }
+  .other-events__bottom {
+    margin-top: 24px;
+  }
 }
 @media (max-width: 576px) {
   .other-events {
     padding: 40px 0;
+  }
+  .other-events__subtitle, .other-events__title {
+    padding-right: 100px;
+  }
+  .other-events__bottom {
+    flex-direction: column;
+  }
+  .other-events__more {
+    margin: 0 0 12px;
+    text-align: center;
   }
 }
 .other-events .event-card__desc {
@@ -2556,6 +2637,9 @@ html[data-theme=dark] .other-events__more {
     margin: 0 0 12px;
     text-align: center;
   }
+  .other-courses__title, .other-courses__subtitle {
+    padding-right: 100px;
+  }
 }
 
 html[data-theme=dark] .other-courses {
@@ -2567,9 +2651,9 @@ html[data-theme=dark] .other-courses__more {
 
 .discount__container {
   padding: 48px 60px;
-  background-image: url("../img/discount-bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: -webkit-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: -moz-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
   border-radius: 4px;
   overflow: hidden;
   position: relative;
@@ -2585,12 +2669,15 @@ html[data-theme=dark] .other-courses__more {
   width: 235px;
   height: 235px;
   pointer-events: none;
+  z-index: 1;
 }
 .discount__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 26px;
+  position: relative;
+  z-index: 2;
 }
 .discount-date {
   display: flex;
@@ -2935,10 +3022,9 @@ html[data-theme=dark] .discount__container {
 
 /*homepage styles*/
 .first-screen {
-  background-image: url("../img/background.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: -webkit-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: -moz-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
   min-height: 100vh;
   margin-bottom: 90px;
 }
@@ -3387,7 +3473,9 @@ html[data-theme=dark] .featured__title {
 /*end benefits*/
 /*events*/
 .lectures {
-  background: #F4F5F6;
+  background: -webkit-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: -moz-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
   padding: 80px 0;
   margin-bottom: 60px;
 }
@@ -3755,6 +3843,7 @@ html[data-theme=dark] .team__slide_post {
 
 .reviews {
   padding: 90px 0 100px;
+  background: #F4F5F6;
 }
 
 .reviews__subtitle {
@@ -3832,7 +3921,7 @@ html[data-theme=dark] .team__slide_post {
   color: #787A80;
 }
 
-html[data-theme=dark] .reviews-best-jobs {
+html[data-theme=dark] .reviews-best-jobs, html[data-theme=dark] .reviews {
   background: #292c37;
 }
 
@@ -4095,8 +4184,9 @@ html[data-theme=dark] .post__label {
 /*end homepage styles*/
 /*start page event*/
 .event {
-  background: url("../img/event/background.png");
-  background-size: cover;
+  background: -webkit-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: -moz-linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
+  background: linear-gradient(45deg, rgba(255, 63, 58, 0.2), rgba(247, 94, 5, 0.2));
   margin-bottom: 60px;
 }
 
